@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,800&display=swap');
 /* .container {
     width: 100%;
     height: auto;
@@ -24,6 +25,30 @@
     background-repeat: no-repeat;
   } */
 
+  *{
+    font-family: 'Open Sans', sans-serif;
+  }
+
   .Landing{
-    background-color: red;
+    width: 100%;
+    border: 2px dashed rgba(120, 120, 120, 0.4);
+    height: 95vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-size: cover;
+    background-image: url(../../images/landingpageimage.jpg);
+    background-position: center;
+  }
+
+  .centered {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 250%;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 3em;
+    color:white;
   }

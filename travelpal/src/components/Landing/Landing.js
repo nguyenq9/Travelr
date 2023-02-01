@@ -2,10 +2,12 @@ import React from "react";
 import './Landing.css'
 
 class Landing extends React.Component {
-    render(){
+    render() {
         return (
             <div className="Landing">
-                <p>Testing</p>
+                <div className="centered">
+                    <h1>Taking you to the best places</h1>
+                </div>
             </div>
         );
     }
