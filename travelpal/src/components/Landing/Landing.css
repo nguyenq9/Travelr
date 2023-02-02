@@ -31,13 +31,13 @@
 
   .Landing{
     width: 100%;
-    border: 2px dashed rgba(120, 120, 120, 0.4);
+    /* border: 2px dashed rgba(120, 120, 120, 0.4); */
     height: 95vh;
     display: flex;
     align-items: center;
     flex-direction: column;
     background-size: cover;
-    background-image: url(../../images/landingpageimage.jpg);
+    background-image: url(../../images/beachresort.jpg);
     background-position: center;
   }
 
@@ -46,9 +46,31 @@
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    line-height: 250%;
+  }
+
+  .centered h1{
+    line-height: 100%;
     font-weight: 700;
     font-style: italic;
-    font-size: 3em;
+    font-size: 6em;
     color:white;
+
+  }
+
+  .SearchBar-submit {
+    text-align: center;
+  }
+  
+  .SearchBar-submit a {
+    padding: 1rem 2.5rem;
+    background-color: #ffdf2b;
+    color: #125747;
+    font-weight: 800;
+    transition: background-color .5s;
+    font-size: 40px;
+  }
+  
+  .SearchBar-submit a:hover {
+    cursor: pointer;
+    background-color: #a7874b;
   }
