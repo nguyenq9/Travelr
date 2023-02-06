@@ -54,23 +54,22 @@
     font-style: italic;
     font-size: 6em;
     color:white;
-
+    margin-top: 3em;
+    margin-bottom: 2em;
   }
 
-  .SearchBar-submit {
-    text-align: center;
-  }
-  
-  .SearchBar-submit a {
-    padding: 1rem 2.5rem;
-    background-color: #ffdf2b;
-    color: #125747;
+  .get-started {
     font-weight: 800;
-    transition: background-color .5s;
-    font-size: 40px;
+    border: none;
+    background-color: #fac022;
+    color: #007aab;
+    padding: 15px 32px;
+    text-decoration: none;
+    font-size: 2em;
+    text-decoration: none;
+    transition-duration: 0.4s;
   }
-  
-  .SearchBar-submit a:hover {
-    cursor: pointer;
-    background-color: #a7874b;
+
+  .get-started:hover {
+    background-color: #ffdd7e;
   }
