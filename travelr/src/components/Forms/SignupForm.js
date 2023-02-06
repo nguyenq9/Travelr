@@ -6,7 +6,7 @@ function SignupForm() {
     return (
         <div className="card">
             <form>
-                <h2 className="title"><a href="/" title='Home'>Travel Pal</a></h2>
+                <h2 className="title"><a href="/" title='Home'>Travelr</a></h2>
                 <p className="or"><span></span></p>
 
                 <div>
