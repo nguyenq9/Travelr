@@ -54,8 +54,6 @@
     font-style: italic;
     font-size: 6em;
     color:white;
-    margin-top: 3em;
-    margin-bottom: 2em;
   }
 
   .get-started {
@@ -73,3 +71,15 @@
   .get-started:hover {
     background-color: #ffdd7e;
   }
+
+  @media screen and (max-width: 900px) {
+
+    .centered h1{
+      line-height: 100%;
+      font-weight: 700;
+      font-style: italic;
+      font-size: 5em;
+      color:white;
+    }
+  
+}

@@ -13,9 +13,18 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import {Link} from 'react-router-dom';
+import logo from './travelpal.png'
+import { padding } from '@mui/system';
+import './ResponsiveAppBar.css'
 
-const pages = ['Home', 'Hotels', 'Activities', 'Restaurants', 'Guides'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Plans', 'Logout'];
+const logoStyle = {
+  width: "30px",
+  height: "30px",
+  paddingRight: "10px"
+}
+
+const pages = ['Plan A Trip', 'Hotels', 'Activities', 'Restaurants', 'Guides'];
+const settings = ['Profile', 'Account', 'Dashboard', 'Plans', 'Login', 'Signup'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -42,7 +51,8 @@ function ResponsiveAppBar() {
     }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 2 }} /> */}
+          <img src={logo} alt='Travel Pal Logo' style={logoStyle}/>
           <Typography
             variant="h6"
             noWrap
@@ -158,10 +168,15 @@ function ResponsiveAppBar() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Typography textAlign="center">
+                    <Link style={{textDecoration:"none", color:"black"}} to={`/${setting}`}>
+                      {setting}
+                    </Link>
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
+            {/* <button>ss</button> */}
           </Box>
         </Toolbar>
       </Container>

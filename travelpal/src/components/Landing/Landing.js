@@ -13,7 +13,7 @@ class Landing extends React.Component {
             <div className="Landing">
                 <div className="centered">
                     <h1>Taking you to the best places</h1>
-                    <button className="get-started"><Link style={linkStyle} to="/home">Get Started</Link></button>
+                    <Link to="Plan A Trip"><button className="get-started">Get Started</button></Link>
                 </div>
             </div>
         );
