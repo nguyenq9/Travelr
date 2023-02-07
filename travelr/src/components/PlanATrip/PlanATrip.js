@@ -1,5 +1,5 @@
 import React from "react";
-import "./Plan.css"
+import "./PlanATrip.css"
 
 
 class Plan extends React.Component {
@@ -52,7 +52,7 @@ class Plan extends React.Component {
 
     render() {
         return (
-            <div className="Plan">
+            <div className="PlanATrip">
                 <div className="plantrip">
                     <form>
                         <h2 className="title"><a href="Plan A Trip" title='Home'>Plan a new trip</a></h2>
