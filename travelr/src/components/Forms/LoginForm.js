@@ -17,7 +17,7 @@ function LoginForm() {
                         </div>
                         <div className="email-login">
                             <label htmlFor="email"> <b>Email</b></label>
-                            <input type="text" placeholder="name@abc.com" name="uname" required />
+                            <input className="email-field" type="text" placeholder="name@abc.com" name="uname" required />
                             <label htmlFor="psw"><b>Password</b></label>
                             <input type="password" placeholder="8+ (a, A, 1, #)" name="psw" required />
                         </div>
