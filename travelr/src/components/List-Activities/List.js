@@ -1,56 +1,39 @@
 import React, {useState} from "react";
 import {Typography, InputLabel, MenuItem, FormControl, Select} from '@mui/material';
-// import { makeStyles } from '@mui/styles';
 import PikePlace from './images/pike-place.jpg';
 import SpaceNoodle from './images/SpaceNoodle.jpg';
 import { createTheme} from '@mui/material/styles';
 
 
-const theme = createTheme();
-// const useStyles = makeStyles({
-//   formControl: {
-//     margin: theme.spacing(1) , minWidth: 120, marginBottom: '30px', marginTop: '-20px',
-//   },
-//   container: {
-//     padding: '20px',
-//   },
-//   searchfields: {
-//     display: 'flex', justifyContent: 'center', marginBottom: '2.88rem', marginTop: '5px'
-//   },
-//   searchfieldsInput: {
-//     width: '21rem', padding: '.66rem 1rem', marginLeft: '1rem', border: '1px solid #fff',borderRadius: '4px',
-//     borderColor: 'inherit', marginTop:'10px', fontSize: '.77rem', fontWeight: '500',
-//   },
-//   });
-const useStyles = {
-  formControl: {
-        margin: theme.spacing(1) , minWidth: 120, marginBottom: '30px', marginTop: '-20px',
-      },
-      container: {
-        padding: '20px',
-      },
-      searchfields: {
-        display: 'flex', justifyContent: 'center', marginBottom: '2.88rem', marginTop: '5px'
-      },
-      searchfieldsInput: {
-        width: '21rem', padding: '.66rem 1rem', marginLeft: '1rem', border: '1px solid #fff',borderRadius: '4px',
-        borderColor: 'inherit', marginTop:'10px', fontSize: '.77rem', fontWeight: '500',
-      },
-}
+ const theme = createTheme();
+  const formControl = {
+    marginTop: '20px',minWidth: 100,marginBottom: '30px'
+  }
+
+  const container =  {
+    padding: '20px',
+  }
+  const searchfields = {
+    display: 'flex', justifyContent: 'center', marginBottom: '2.88rem', marginTop: '5px'
+  }
+
+  const searchfieldsInput = {
+    width: '21rem', padding: '.66rem 1rem', marginLeft: '1rem', border: '1px solid #fff',borderRadius: '4px',
+    borderColor: 'inherit', marginTop:'10px', fontSize: '.77rem', fontWeight: '500',
+  }
 
 
 const List = ()  => {
-    const classes = useStyles();
     const [rating, setRating] = useState('');
 
     return (
-        <div className={classes.container}>
+        <div sx = {container}>
 
             <Typography variant="h4">Attraction Things To Do</Typography>
-            <div className={classes.searchfields}>
-                <input className={classes.searchfieldsInput} placeholder="Search City...." />
+            <div sx={searchfields}>
+                <input sx={searchfieldsInput} placeholder="Search City...." />
             </div>
-            <FormControl className={classes.formControl}>
+            <FormControl sx={formControl}>
                 <InputLabel id="rating">Rating</InputLabel>
                 <Select id="rating" value={rating} onChange={(e) => setRating(e.target.value)}>
                     <MenuItem value="">All</MenuItem>
