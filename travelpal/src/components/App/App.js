@@ -1,6 +1,8 @@
-import logo from "../../logo.svg";
+// import logo from "../../logo.svg";
 import "./App.css";
 import ResponsiveAppBar from "../Navigation/ResponsiveAppBar";
+// eslint-disable-next-line
+import React from 'react';
 import Footer from "../Footer/Footer";
 import { Route, Routes } from "react-router-dom";
 import Restaurants from "../Restaurants/Restaurants";
@@ -14,14 +16,14 @@ function App() {
   return (
     <div className="App">
       <ResponsiveAppBar />
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="Home" element={<Home />} />
-        <Route path="Hotels" element={<Hotels />} />
-        <Route path="Guides" element={<Guides />} />
-        <Route path="Activities" element={<Activities />} />
-        <Route path="Restaurants" element={<Restaurants />} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="Home" element={<Home />} />
+          <Route path="Hotels" element={<Hotels />} />
+          <Route path="Guides" element={<Guides />} />
+          <Route path="Activities" element={<Activities />} />
+          <Route path="Restaurants" element={<Restaurants />} />
+        </Routes>
       <Footer />
     </div>
   );
