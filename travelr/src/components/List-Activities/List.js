@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Typography, InputLabel, MenuItem, FormControl, Select} from '@material-ui/core';
+import {Typography, InputLabel, MenuItem, FormControl, Select} from '@mui/material';
 
 import PikePlace from './images/pike-place.jpg';
 import SpaceNoodle from './images/SpaceNoodle.jpg';

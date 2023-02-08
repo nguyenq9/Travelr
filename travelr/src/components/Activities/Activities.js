@@ -1,5 +1,5 @@
 import React from "react";
-import { CssBaseline, Grid } from '@material-ui/core';
+import { CssBaseline, Grid } from '@mui/material';
 import List from '../List-Activities/List'
 import Map from '../Map-Activities/Map';
 
@@ -9,7 +9,7 @@ const Activities = () => {
             <CssBaseline /> 
             <Grid container spacing={3} style={{ width: '100%' }}>
                 <Grid item xs={12} md={4}>
-                    <List />
+                    {/* <List /> */}
                 </Grid>
                 <Grid item xs={12} md={8} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <Map />
