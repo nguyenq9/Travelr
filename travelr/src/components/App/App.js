@@ -4,7 +4,7 @@ import ResponsiveAppBar from "../Navigation/ResponsiveAppBar";
 import React from 'react';
 import Footer from "../Footer/Footer";
 import { Route, Routes } from "react-router-dom";
-import Restaurants from "../Restaurants/Restaurants";
+// import Restaurants from "../Restaurants/Restaurants";
 import PlanATrip from "../PlanATrip/PlanATrip";
 import Guides from "../Guides/Guides";
 import Hotels from "../Hotels/Hotels";
@@ -15,6 +15,7 @@ import SignupForm from "../Forms/SignupForm";
 import GuidePage from "../Guides/GuidePage";
 import PageNotFound from "../Pages/PageNotFound";
 import PlanPage from "../Pages/PlanPage";
+import RestarauntPage from "../Pages/RestarauntPage";
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
         <Route path="Guides" element={<Guides />} />
         <Route path="Guides/:guide_post_id" element={<GuidePage />} />
         <Route path="Activities" element={<Activities />} />
-        <Route path="Restaurants" element={<Restaurants />} />
+        <Route path="Restaurants" element={<RestarauntPage />} />
         <Route path="Login" element={<LoginForm />} />
         <Route path="Signup" element={<SignupForm />} />
         <Route path="*" element={<PageNotFound />}/>
