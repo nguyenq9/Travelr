@@ -1,0 +1,62 @@
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.search-input {
+  width: 45%;
+  height: 35px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.search-btn {
+  width: 10%;
+  height: 35px;
+  border: none;
+  border-radius: 15px;
+  background-color:#FAC022;
+  color: black;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+}
+.search-btn-ex {
+display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px;
+
+}
+.sortOptions {
+ display: flex;
+ align-items: center;
+ justify-content: space-around;
+ font-size: 20px;
+ text-align: center;
+}
+
+.Hotels {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+
+.search-options ul{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  padding: 5px;
+  margin: 0;
+}
+
