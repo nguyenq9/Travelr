@@ -1,27 +1,42 @@
 import React, {useState} from "react";
 import {Typography, InputLabel, MenuItem, FormControl, Select} from '@mui/material';
-import { makeStyles } from '@mui/styles';
+// import { makeStyles } from '@mui/styles';
 import PikePlace from './images/pike-place.jpg';
 import SpaceNoodle from './images/SpaceNoodle.jpg';
 import { createTheme} from '@mui/material/styles';
 
 
 const theme = createTheme();
-const useStyles = makeStyles({
+// const useStyles = makeStyles({
+//   formControl: {
+//     margin: theme.spacing(1) , minWidth: 120, marginBottom: '30px', marginTop: '-20px',
+//   },
+//   container: {
+//     padding: '20px',
+//   },
+//   searchfields: {
+//     display: 'flex', justifyContent: 'center', marginBottom: '2.88rem', marginTop: '5px'
+//   },
+//   searchfieldsInput: {
+//     width: '21rem', padding: '.66rem 1rem', marginLeft: '1rem', border: '1px solid #fff',borderRadius: '4px',
+//     borderColor: 'inherit', marginTop:'10px', fontSize: '.77rem', fontWeight: '500',
+//   },
+//   });
+const useStyles = {
   formControl: {
-    margin: theme.spacing(1) , minWidth: 120, marginBottom: '30px', marginTop: '-20px',
-  },
-  container: {
-    padding: '20px',
-  },
-  searchfields: {
-    display: 'flex', justifyContent: 'center', marginBottom: '2.88rem', marginTop: '5px'
-  },
-  searchfieldsInput: {
-    width: '21rem', padding: '.66rem 1rem', marginLeft: '1rem', border: '1px solid #fff',borderRadius: '4px',
-    borderColor: 'inherit', marginTop:'10px', fontSize: '.77rem', fontWeight: '500',
-  },
-  });
+        margin: theme.spacing(1) , minWidth: 120, marginBottom: '30px', marginTop: '-20px',
+      },
+      container: {
+        padding: '20px',
+      },
+      searchfields: {
+        display: 'flex', justifyContent: 'center', marginBottom: '2.88rem', marginTop: '5px'
+      },
+      searchfieldsInput: {
+        width: '21rem', padding: '.66rem 1rem', marginLeft: '1rem', border: '1px solid #fff',borderRadius: '4px',
+        borderColor: 'inherit', marginTop:'10px', fontSize: '.77rem', fontWeight: '500',
+      },
+}
 
 
 const List = ()  => {
