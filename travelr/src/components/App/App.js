@@ -11,6 +11,7 @@ import Activities from "../Activities/Activities";
 import Landing from "../Landing/Landing";
 import LoginForm from "../Forms/LoginForm";
 import SignupForm from "../Forms/SignupForm";
+import GuidePage from "../Guides/GuidePage";
 import PageNotFound from "../Pages/PageNotFound";
 import PlanPage from "../Pages/PlanPage";
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="Plans" element={<PlanPage />} />
         <Route path="Hotels" element={<Hotels />} />
         <Route path="Guides" element={<Guides />} />
+        <Route path="Guides/:guide_post_id" element={<GuidePage />} />
         <Route path="Activities" element={<Activities />} />
         <Route path="Restaurants" element={<Restaurants />} />
         <Route path="Login" element={<LoginForm />} />
