@@ -1,6 +1,7 @@
-import logo from "../../logo.svg";
+// import logo from "../../logo.svg";
 import "./App.css";
 import ResponsiveAppBar from "../Navigation/ResponsiveAppBar";
+import React from 'react';
 import Footer from "../Footer/Footer";
 import { Route, Routes } from "react-router-dom";
 import Restaurants from "../Restaurants/Restaurants";
