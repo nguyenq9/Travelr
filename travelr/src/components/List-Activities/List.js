@@ -13,7 +13,7 @@ const List = ()  => {
     return (
         <div className={classes.container}>
 
-            <Typography variant="h4">Attractions Things To Do</Typography>
+            <Typography variant="h4">Attraction Things To Do</Typography>
             <div className={classes.searchfields}>
                 <input className={classes.searchfieldsInput} placeholder="Search City...." />
             </div>
