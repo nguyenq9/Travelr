@@ -1,8 +1,8 @@
 import React from "react";
-import "./Plan.css"
+import "./PlanATrip.css"
 
 
-class Plan extends React.Component {
+class PlanATrip extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
@@ -36,23 +36,24 @@ class Plan extends React.Component {
 
     handleCreatePlan(event){
         // Create plan here
-        // const plan = {
-        //     title: "First Time In Rome",
-        //     location: "Rome",
-        //     startDate: "XXXX-XX-XX",
-        //     endDate: "XXXX-XX-XX",
-        //     travelers: ["John", "Mary", "Paul"],
-        //     hotels: ["4 seasons", "Holiday Inn", "Hilton"],
-        //     activities: ["Colosseum", "Trevi Fountain", "Vatican Museum"],
-        //     restaurants: ["Felice e Testaccio", "Pianostrada", "Marigold"],
-        // }
+        const plan = {
+            title: "First Time In Rome",
+            location: "TEST",
+            startDate: "XXXX-XX-XX",
+            endDate: "XXXX-XX-XX",
+            travelers: ["John", "Mary", "Paul"],
+            hotels: ["4 seasons", "Holiday Inn", "Hilton"],
+            activities: ["Colosseum", "Trevi Fountain", "Vatican Museum"],
+            restaurants: ["Felice e Testaccio", "Pianostrada", "Marigold"],
+        }
+        this.props.addPlan(plan);
         console.log(`Creating "${this.state.title}" to go to ${this.state.location} from ${this.state.startDate} to ${this.state.endDate}`)
         event.preventDefault();
     }
 
     render() {
         return (
-            <div className="Plan">
+            <div className="PlanATrip">
                 <div className="plantrip">
                     <form>
                         <h2 className="title"><a href="Plan A Trip" title='Home'>Plan a new trip</a></h2>
@@ -87,4 +88,4 @@ class Plan extends React.Component {
     }
 }
 
-export default Plan;
+export default PlanATrip;
