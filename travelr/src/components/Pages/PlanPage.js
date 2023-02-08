@@ -14,13 +14,19 @@ const plan = {
 
 const plans = [plan, plan, plan, plan, plan, plan, plan, plan];
 
+
 const PlanPage = () => {
-    return (
-      <>
-        <PlanList plans={plans}/>
-      </> 
-  
-    );
-  };
-  
-  export default PlanPage;  
+
+  function addPlan(plan) {
+    plans.push(plan)
+  }
+
+  return (
+    <>
+      <PlanList plans={plans} />
+    </>
+
+  );
+};
+
+export default PlanPage;  

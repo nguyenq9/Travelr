@@ -2,7 +2,7 @@ import React from "react";
 import "./PlanATrip.css"
 
 
-class Plan extends React.Component {
+class PlanATrip extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
@@ -87,4 +87,4 @@ class Plan extends React.Component {
     }
 }
 
-export default Plan;
+export default PlanATrip;
