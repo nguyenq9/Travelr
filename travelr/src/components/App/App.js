@@ -11,6 +11,7 @@ import Activities from "../Activities/Activities";
 import Landing from "../Landing/Landing";
 import LoginForm from "../Forms/LoginForm";
 import SignupForm from "../Forms/SignupForm";
+import GuidePage from "../Guides/GuidePage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="Plan A Trip" element={<Plan />} />
         <Route path="Hotels" element={<Hotels />} />
         <Route path="Guides" element={<Guides />} />
+        <Route path="Guides/:guide_post_id" element={<GuidePage />} />
         <Route path="Activities" element={<Activities />} />
         <Route path="Restaurants" element={<Restaurants />} />
         <Route path="Login" element={<LoginForm />} />
