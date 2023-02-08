@@ -1,4 +1,5 @@
 import React from "react";
+import PlanATrip from "../PlanATrip/PlanATrip";
 import PlanList from "../PlanList/PlanList";
 
 const plan = {
@@ -12,18 +13,26 @@ const plan = {
   restaurants: ["Felice e Testaccio", "Pianostrada", "Marigold"],
 }
 
-const plans = [plan, plan, plan, plan, plan, plan, plan, plan];
+const plans = [plan, plan, plan];
 
 
 const PlanPage = () => {
 
-  function addPlan(plan) {
-    plans.push(plan)
+  function addPlan(test) {
+    plans.push(test)
   }
+
+  let planList;
+  let planForm = <PlanATrip addPlan={addPlan}/>;
+  // if (plans.length == 0) {
+    planList = <PlanList plans={plans} />
+    // planForm = ""
+  // }
 
   return (
     <>
-      <PlanList plans={plans} />
+      {planForm }
+      {planList}
     </>
 
   );
