@@ -1,5 +1,11 @@
 import React from "react";
 import './Landing.css'
+import { Link } from 'react-router-dom';
+
+const linkStyle = {
+    textDecoration: "none",
+    color: "#2b8c90",
+}
 
 class Landing extends React.Component {
     render() {
@@ -7,9 +13,7 @@ class Landing extends React.Component {
             <div className="Landing">
                 <div className="centered">
                     <h1>Taking you to the best places</h1>
-                    <div className="SearchBar-submit">
-                        <a>Get Started</a>
-                    </div>
+                    <Link to="Plan A Trip"><button className="get-started">Get Started</button></Link>
                 </div>
             </div>
         );

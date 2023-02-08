@@ -1,0 +1,101 @@
+a {
+    text-decoration: none;
+  }
+
+  
+  .plantrip {
+    font-family: 'Manrope', sans-serif;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3em;
+    margin-bottom:3em;
+    /* border-radius: 10px; */
+    background-color: #ffff;
+    padding: 1.8rem;
+    box-shadow: 2px 5px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .title {
+    text-align: center;
+    font-weight: bold;
+    margin: 0;
+  }
+  .title a{
+    color: #000;
+  }
+  
+  
+  
+  .or {
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 2px solid rgb(245 239 239);
+    line-height: 0.1em;
+    margin: 25px 0;
+  }
+  .or span {
+    background: #fff;
+    padding: 0 10px;
+  }
+  
+  .plan-fields {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+  }
+  .plan-fields label {
+    color: rgb(119, 118, 118);
+  }
+  
+  .location{
+    width: 60%;
+  }
+
+  input[type="text"],
+  input[type="date"] {
+    /* text-align: center; */
+    /* width: 50%; */
+    padding: 15px 20px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+
+  input[type="date"] {
+    width: 30%;
+  }
+
+  #start-label {
+    padding-right: 8%;
+  }
+
+  #end-label {
+    padding-left: 8%;
+  }
+
+  
+  .create-btn {
+    background-color: #006a92;
+    color: #fff;
+    padding: 18px 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 30%;
+    /* border-radius: 10px; */
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s linear;
+  }
+  .create-btn:hover{
+    transform: translateY(-2px);
+    background-color: #004a66;
+    color: #fff;
+  }
