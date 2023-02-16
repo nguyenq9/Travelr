@@ -15,6 +15,7 @@ import SignupForm from "../Forms/SignupForm";
 import GuidePage from "../Guides/GuidePage";
 import PageNotFound from "../Pages/PageNotFound";
 import PlanPage from "../Pages/PlanPage";
+import RestaurantPage from "../Pages/RestaurantPage";
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
         <Route path="Guides" element={<Guides />} />
         <Route path="Guides/:guide_post_id" element={<GuidePage />} />
         <Route path="Activities" element={<Activities />} />
-        <Route path="Restaurants" element={<Restaurants />} />
+        <Route path="Restaurants" element={<RestaurantPage />} />
         <Route path="Login" element={<LoginForm />} />
         <Route path="Signup" element={<SignupForm />} />
         <Route path="*" element={<PageNotFound />}/>
