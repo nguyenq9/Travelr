@@ -14,11 +14,10 @@ const plan = {
   restaurants: ["Felice e Testaccio", "Pianostrada", "Marigold"],
 }
 
-// Get the current user's plan
-const plans = [plan];
+// Get the current user's plans
+const plans = [];
 
 class PlanPage extends React.Component {
-  // const [plans, setPlans] = useState([])
   constructor(props) {
     super(props);
     this.state = {
@@ -28,6 +27,7 @@ class PlanPage extends React.Component {
   }
 
   addPlan(test) {
+    test.key = plans.length+1
     plans.push(test)
     this.setState({
       plans

@@ -35,7 +35,10 @@ class PlanATrip extends React.Component {
     }
 
     handleCreatePlan(event){
-        // Create plan here
+        // if (!this.state.title || !this.state.location || !this.state.startDate || !this.state.endDate) {
+        //     console.log("Something is missing")
+        //     return;
+        // } 
         const plan = {
             title: this.state.title,
             location: this.state.location,
@@ -46,8 +49,8 @@ class PlanATrip extends React.Component {
             activities: [],
             restaurants: [],
         }
-        this.props.addPlan(plan);
         console.log(`Creating "${this.state.title}" to go to ${this.state.location} from ${this.state.startDate} to ${this.state.endDate}`)
+        this.props.addPlan(plan);
         event.preventDefault();
     }
 

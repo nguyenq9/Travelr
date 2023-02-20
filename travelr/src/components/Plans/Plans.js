@@ -13,8 +13,8 @@ class Plans extends React.Component {
     }
 
     handlePlanClick(event) {
-        console.log(this.props.plan);
-        this.props.navigate("/Plans/" + this.props.plan.title, {state: {plan: this.props.plan}})
+        console.log(this.props.plan.key);
+        this.props.navigate("/Plans/" + this.props.plan.key, {state: {plan: this.props.plan}})
         event.preventDefault();
     }
 

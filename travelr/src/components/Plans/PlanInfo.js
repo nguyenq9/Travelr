@@ -9,7 +9,7 @@ function PlanInfo (props) {
     const { guide_post_id } = useParams();
     return (
         <div className="PlanInfo">
-            <h1>Testing {location.state.plan.location   }</h1>
+            <h1>Testing {location.state.plan.title}</h1>
             <img src={rome} alt="Test"/>
         </div>
     );
