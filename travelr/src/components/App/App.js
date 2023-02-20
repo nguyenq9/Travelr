@@ -16,6 +16,7 @@ import GuidePage from "../Guides/GuidePage";
 import PageNotFound from "../Pages/PageNotFound";
 import PlanPage from "../Pages/PlanPage";
 import RestaurantPage from "../Pages/RestaurantPage";
+import PlanInfo from "../Plans/PlanInfo"
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="Plan A Trip" element={<PlanATrip />} />
         <Route path="Plans" element={<PlanPage />} />
+        <Route path="Plans/:plan_id" element={<PlanInfo />} />
         <Route path="Hotels" element={<Hotels />} />
         <Route path="Guides" element={<Guides />} />
         <Route path="Guides/:guide_post_id" element={<GuidePage />} />

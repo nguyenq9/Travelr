@@ -1,4 +1,5 @@
 import React from "react";
+import { Navigate } from "react-router-dom";
 import './Plans.css'
 
 
@@ -13,6 +14,7 @@ class Plans extends React.Component {
 
     handlePlanClick(event) {
         console.log(this.props.plan);
+        this.props.navigate("/Plans/" + this.props.plan.title, {state: {plan: this.props.plan}})
         event.preventDefault();
     }
 

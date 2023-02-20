@@ -37,14 +37,14 @@ class PlanATrip extends React.Component {
     handleCreatePlan(event){
         // Create plan here
         const plan = {
-            title: "First Time In Rome",
-            location: "TEST",
-            startDate: "XXXX-XX-XX",
-            endDate: "XXXX-XX-XX",
-            travelers: ["John", "Mary", "Paul"],
-            hotels: ["4 seasons", "Holiday Inn", "Hilton"],
-            activities: ["Colosseum", "Trevi Fountain", "Vatican Museum"],
-            restaurants: ["Felice e Testaccio", "Pianostrada", "Marigold"],
+            title: this.state.title,
+            location: this.state.location,
+            startDate: this.state.startDate,
+            endDate: this.state.endDate,
+            travelers: [],
+            hotels: [],
+            activities: [],
+            restaurants: [],
         }
         this.props.addPlan(plan);
         console.log(`Creating "${this.state.title}" to go to ${this.state.location} from ${this.state.startDate} to ${this.state.endDate}`)

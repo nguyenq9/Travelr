@@ -23,8 +23,15 @@ const logoStyle = {
   paddingRight: "10px"
 }
 
+// const btnStyle = {
+//   backgroundColor: "red",
+//   border: "none",
+//   marginRight: "10px",
+//   padding: "10px 20px"
+// }
+
 const pages = ['Plan A Trip', 'Hotels', 'Activities', 'Restaurants', 'Guides'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Plans', 'Login', 'Signup'];
+const settings = ['Profile', 'Plans'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -176,7 +183,8 @@ function ResponsiveAppBar() {
                 </MenuItem>
               ))}
             </Menu>
-            {/* <button>ss</button> */}
+            <Link to="/login"><button className="navbtn" id='login'>Login</button></Link>
+            <Link to="/signup"><button className="navbtn">Sign Up</button></Link>
           </Box>
         </Toolbar>
       </Container>

@@ -3,6 +3,7 @@ import PlanATrip from "../PlanATrip/PlanATrip";
 import PlanList from "../PlanList/PlanList";
 
 const plan = {
+  key: "0",
   title: "First Time In Rome",
   location: "Rome",
   startDate: "2023-01-01",
@@ -13,29 +14,35 @@ const plan = {
   restaurants: ["Felice e Testaccio", "Pianostrada", "Marigold"],
 }
 
-const plans = [plan, plan, plan];
+// Get the current user's plan
+const plans = [plan];
 
-
-const PlanPage = () => {
-
-  function addPlan(test) {
-    plans.push(test)
+class PlanPage extends React.Component {
+  // const [plans, setPlans] = useState([])
+  constructor(props) {
+    super(props);
+    this.state = {
+      plans
+    }
+    this.addPlan = this.addPlan.bind(this);
   }
 
-  let planList;
-  let planForm = <PlanATrip addPlan={addPlan}/>;
-  // if (plans.length == 0) {
-    planList = <PlanList plans={plans} />
-    // planForm = ""
-  // }
+  addPlan(test) {
+    plans.push(test)
+    this.setState({
+      plans
+    })
+  }
 
-  return (
-    <>
-      {planForm }
-      {planList}
-    </>
-
-  );
+  render() {
+    return (
+      <React.Fragment>
+        <PlanATrip addPlan={this.addPlan}/>
+        <PlanList plans={this.state.plans} />
+      </React.Fragment>
+  
+    );
+  }
 };
 
 export default PlanPage;  
