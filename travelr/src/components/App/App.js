@@ -1,7 +1,7 @@
 // import logo from "../../logo.svg";
 import "./App.css";
 import ResponsiveAppBar from "../Navigation/ResponsiveAppBar";
-import React from 'react';
+import React, { Component, useState, useEffect } from "react";
 import Footer from "../Footer/Footer";
 import { Route, Routes } from "react-router-dom";
 import Restaurants from "../Restaurants/Restaurants";
@@ -17,11 +17,52 @@ import PageNotFound from "../Pages/PageNotFound";
 import PlanPage from "../Pages/PlanPage";
 import RestaurantPage from "../Pages/RestaurantPage";
 import PlanInfo from "../Plans/PlanInfo"
+import Protected from "../../util/Protected";
+import Account from "../Account/Account"
+import {useSelector, useDispatch} from 'react-redux';
+import {login} from "../../store/slices/authSlice"
+import AppLoader from "../utils/loaders/AppLoader"
 
 function App() {
+  // const [user, setUser] = useState({
+  //   email: "",
+  // });
+
+  // useEffect(() => {
+  //   const user = JSON.parse(localStorage.getItem("user"));
+  //   if (user) {
+  //     setUser({
+  //       email: user?.email || "",
+  //     });
+  //   }
+  // }, []);
+
+  // const logout = () => {
+  //   localStorage.removeItem("user");
+  //   setUser({
+  //     email: "",
+  //   });
+  // };
+  const { loaded } = useSelector(state => state.auth)
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (!loaded) {
+      const user = JSON.parse(localStorage.getItem('user'));
+      setTimeout(() => {
+        dispatch(login({
+          firstName: user?.firstName || '',
+          lastName: user?.lastName || '',
+          email: user?.email || '',
+          avatar: ''
+        }))
+      }, 2000)
+    }
+  })
+
   return (
     <div className="App">
-      <ResponsiveAppBar />
+      {!loaded && <AppLoader />}
+      <ResponsiveAppBar/>
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="Plan A Trip" element={<PlanATrip />} />
@@ -34,6 +75,14 @@ function App() {
         <Route path="Restaurants" element={<RestaurantPage />} />
         <Route path="Login" element={<LoginForm />} />
         <Route path="Signup" element={<SignupForm />} />
+        <Route
+          path="/profile"
+          element={
+            <Protected>
+              <Account />
+            </Protected>
+          }
+        />
         <Route path="*" element={<PageNotFound />}/>
       </Routes>
       <Footer />

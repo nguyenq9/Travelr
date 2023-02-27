@@ -4,6 +4,8 @@ import {Link, useNavigate} from 'react-router-dom'
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from "zod";
+import { useDispatch } from 'react-redux';
+import {login} from '../../store/slices/authSlice';
 
 
 const formSchema = z.object({
@@ -14,7 +16,7 @@ const formSchema = z.object({
 
 
 function LoginForm(props) {
-    const { setUser } = props;
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const { register, handleSubmit, formState: {errors} } =
     useForm({
@@ -22,16 +24,26 @@ function LoginForm(props) {
     });
 
     const loginHandler = (data) => {
-        localStorage.setItem(
-            "user",
-            JSON.stringify({
-                email: data.email,
-            })
-        );
-        setUser({
-            email: data.email
+        fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data),
         })
-        navigate("/", { replace: true });
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    const { email = '', firstName = '', lastName = ''} = data.data.user;
+                    dispatch(login({firstName, lastName, email, avatar: ''}));
+                    localStorage.setItem('user', JSON.stringify(data.data.user));
+                    navigate("/", {replace: true });
+                    console.log(data.message);
+                } else {
+                    console.error(data.message);
+                }
+            })
+            .catch(err => { });
     }
 
     return (
