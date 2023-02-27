@@ -67,7 +67,7 @@ import { useRef, useEffect } from "react";
 
     useEffect(() => {
       loadScript(
-        `https://maps.googleapis.com/maps/api/js?key=AIzaSyCsufdamQaxOQ5M1hsT4x_P5OLe4x7gCN4&libraries=places`,
+        `https://maps.googleapis.com/maps/api/js?key=<>=places`,
         () => handleScriptLoad(setQuery, autoCompleteRef)
       );
     }, []);
