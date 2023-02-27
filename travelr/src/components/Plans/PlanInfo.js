@@ -61,7 +61,7 @@ function PlanInfo (props) {
                                     <div className="form-gp">
                                         <label>Travelers</label>
                                         {travelers.map(t =>{
-                                            return <input type="text" className="form-cont" value={t} onChange={(e) => setTravelers(e.target.value)} />
+                                            return <input key={t} type="text" className="form-cont" value={t} onChange={(e) => setTravelers(e.target.value)} />
                                         })}
                                     </div>
                                 </div>
@@ -69,7 +69,7 @@ function PlanInfo (props) {
                                     <div className="form-gp">
                                         <label>Activities</label>
                                         {activities.map(t =>{
-                                            return <input type="text" className="form-cont" value={t} onChange={(e) => setTravelers(e.target.value)} />
+                                            return <input key={t} type="text" className="form-cont" value={t} onChange={(e) => setTravelers(e.target.value)} />
                                         })}
                                     </div>
                                 </div>
@@ -77,7 +77,7 @@ function PlanInfo (props) {
                                     <div className="form-gp">
                                         <label>Hotels</label>
                                         {hotels.map(t =>{
-                                            return <input type="text" className="form-cont" value={t} onChange={(e) => setTravelers(e.target.value)} />
+                                            return <input key={t} type="text" className="form-cont" value={t} onChange={(e) => setTravelers(e.target.value)} />
                                         })}
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@ function PlanInfo (props) {
                                     <div className="form-gp">
                                         <label>Restaurants</label>
                                         {restaurants.map(t =>{
-                                            return <input type="text" className="form-cont" value={t} onChange={(e) => setTravelers(e.target.value)} />
+                                            return <input key={t} type="text" className="form-cont" value={t} onChange={(e) => setTravelers(e.target.value)} />
                                         })}
                                     </div>
                                 </div>

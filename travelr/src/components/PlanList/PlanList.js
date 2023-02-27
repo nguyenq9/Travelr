@@ -9,7 +9,7 @@ function PlanList (props) {
     return (
         <div className="PlanList">
             {props.plans.map(b => {
-                return <Plans plan={b} navigate={navigate}/>
+                return <Plans key={b.title} plan={b} navigate={navigate}/>
             })}
         </div>
     );

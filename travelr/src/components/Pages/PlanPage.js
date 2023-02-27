@@ -37,7 +37,6 @@ class PlanPage extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <PlanATrip addPlan={this.addPlan}/>
         <PlanList plans={this.state.plans} />
       </React.Fragment>
   

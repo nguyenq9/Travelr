@@ -24,25 +24,6 @@ import {login} from "../../store/slices/authSlice"
 import AppLoader from "../utils/loaders/AppLoader"
 
 function App() {
-  // const [user, setUser] = useState({
-  //   email: "",
-  // });
-
-  // useEffect(() => {
-  //   const user = JSON.parse(localStorage.getItem("user"));
-  //   if (user) {
-  //     setUser({
-  //       email: user?.email || "",
-  //     });
-  //   }
-  // }, []);
-
-  // const logout = () => {
-  //   localStorage.removeItem("user");
-  //   setUser({
-  //     email: "",
-  //   });
-  // };
   const { loaded } = useSelector(state => state.auth)
   const dispatch = useDispatch();
   useEffect(() => {

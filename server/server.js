@@ -194,6 +194,14 @@ app.post('/api/login', function (req, res) {
 
 })
 
+app.post('/api/planatrip', function (req, res) {
+    console.log("[PLAN A TRIP]")
+    res.json({
+        status: 'success',
+        message: 'successfully logged in',
+    })
+})
+
 app.listen(port, function () {
     console.log(`Example app listening on port ${port}`)
 })

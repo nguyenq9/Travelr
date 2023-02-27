@@ -3,6 +3,7 @@ import "./PlanATrip.css"
 
 
 class PlanATrip extends React.Component {
+    
     constructor (props) {
         super(props);
         this.state = {
@@ -34,24 +35,46 @@ class PlanATrip extends React.Component {
         this.setState({endDate: event.target.value});
     }
 
-    handleCreatePlan(event){
+    handleCreatePlan(data){
         // if (!this.state.title || !this.state.location || !this.state.startDate || !this.state.endDate) {
         //     console.log("Something is missing")
         //     return;
         // } 
-        const plan = {
-            title: this.state.title,
-            location: this.state.location,
-            startDate: this.state.startDate,
-            endDate: this.state.endDate,
-            travelers: [],
-            hotels: [],
-            activities: [],
-            restaurants: [],
-        }
-        console.log(`Creating "${this.state.title}" to go to ${this.state.location} from ${this.state.startDate} to ${this.state.endDate}`)
-        this.props.addPlan(plan);
-        event.preventDefault();
+        // const plan = {
+        //     title: this.state.title,
+        //     location: this.state.location,
+        //     startDate: this.state.startDate,
+        //     endDate: this.state.endDate,
+        //     travelers: [],
+        //     hotels: [],
+        //     activities: [],
+        //     restaurants: [],
+        // }
+        
+        // console.log(`Creating "${this.state.title}" to go to ${this.state.location} from ${this.state.startDate} to ${this.state.endDate}`)
+        fetch('/api/planatrip', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          })
+            .then(res => res.json())
+            .then(data => {
+              if (data.status === 'success') {
+                // getting user email from response if successful.
+                // const { email = '', firstName = '', lastName = '' } = data.data.user;
+                // console.log(data.data.user);
+                // setting user to the redux store
+                // dispatch(login({ firstName, lastName, email, avatar: '' }));
+                // localStorage.setItem('user', JSON.stringify(data.data.user));
+                // navigate("/", { replace: true });
+                console.log(data.message);
+              } else {
+                console.error(data.message);
+              }
+            })
+            .catch(err => { })
     }
 
     render() {
@@ -83,7 +106,7 @@ class PlanATrip extends React.Component {
                             <input type="date" placeholder="End date" name="endDate" required />*/}
                         </div>
                         <br></br>
-                        <button className="create-btn" onClick={this.handleCreatePlan}>Create Plan</button>
+                        <button type="submit" className="create-btn">Create Plan</button>
                     </form>
                 </div>
             </div>
