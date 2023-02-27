@@ -15,7 +15,7 @@ const plan = {
 }
 
 // Get the current user's plans
-const plans = [];
+const plans = [plan];
 
 class PlanPage extends React.Component {
   constructor(props) {
