@@ -7,6 +7,7 @@ import * as z from "zod";
 import { useDispatch } from "react-redux";
 import { login } from "../../store/slices/authSlice";
 
+
 const formSchema = z.object({
     firstName: z.string().min(1, "Enter your first name"),
     lastName: z.string().min(1, "Enter your last name"),
@@ -32,6 +33,7 @@ function SignupForm(props) {
 
     const signupHandler = (data) => {
         // sending signup request to the server with user data. here method is post method and body contains login data
+        console.log(data)
         fetch('/api/signup', {
           method: 'POST',
           headers: {

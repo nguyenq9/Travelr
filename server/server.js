@@ -19,6 +19,18 @@ const url = process.env.DATABASE_URL
 
 //DEFINE THE SHCEMA HERE
 
+const plan = {
+  key: 0,
+  title: "First Time In Rome",
+  location: "Rome",
+  startDate: "2023-01-01",
+  endDate: "2023-01-14",
+  travelers: ["John", "Mary", "Paul"],
+  hotels: ["4 seasons", "Holiday Inn", "Hilton"],
+  activities: ["Colosseum", "Trevi Fountain", "Vatican Museum"],
+  restaurants: ["Felice e Testaccio", "Pianostrada", "Marigold"],
+}
+
 const userSchema = new mongoose.Schema({
     firstName: {
         type: String,
@@ -37,6 +49,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         unique: true,
         required: true,
+    },
+    plans: { 
+        type : Array , 
+        "default" : [plan], 
     }
 })
 
@@ -194,11 +210,25 @@ app.post('/api/login', function (req, res) {
 
 })
 
-app.post('/api/planatrip', function (req, res) {
-    console.log("[PLAN A TRIP]")
+app.post('/api/createplan', function (req, res) {
+    console.log("[PLAN A TRIP]");
+    const { title, location, startDate, endDate, travelers, hotels, activities, restaurants} = req.body;
+
+    console.log(localStorage.getItem('user').email);
+
+    if (!title || !location || !startDate || !endDate) {
+        return res.json({
+            status: 'fail',
+            message: 'Missing required input fields. (key, title, location, startDate, endDate)'
+        })
+    }
+
+    // User.updateOne(
+    //     {email: }
+    // )
     res.json({
         status: 'success',
-        message: 'successfully logged in',
+        message: 'Done making a plan',
     })
 })
 

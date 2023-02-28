@@ -3,7 +3,7 @@ import PlanATrip from "../PlanATrip/PlanATrip";
 import PlanList from "../PlanList/PlanList";
 
 const plan = {
-  key: "0",
+  key: 0,
   title: "First Time In Rome",
   location: "Rome",
   startDate: "2023-01-01",
@@ -23,16 +23,8 @@ class PlanPage extends React.Component {
     this.state = {
       plans
     }
-    this.addPlan = this.addPlan.bind(this);
   }
 
-  addPlan(test) {
-    test.key = plans.length+1
-    plans.push(test)
-    this.setState({
-      plans
-    })
-  }
 
   render() {
     return (
