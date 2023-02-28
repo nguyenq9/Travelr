@@ -15,6 +15,8 @@ const port = 1337
 //SET THE VARIABLE OF THE DB EVIRONMENT
 const url = process.env.DATABASE_URL
 
+var current_user_email = ""
+
 // user schema
 
 //DEFINE THE SHCEMA HERE
@@ -190,6 +192,8 @@ app.post('/api/login', function (req, res) {
                     message: 'Invalid username or password',
                 })
             }
+            current_user_email = email
+            console.log(current_user_email);
             res.json({
                 status: 'success',
                 message: 'successfully logged in',
@@ -214,7 +218,6 @@ app.post('/api/createplan', function (req, res) {
     console.log("[PLAN A TRIP]");
     const { title, location, startDate, endDate, travelers, hotels, activities, restaurants} = req.body;
 
-    console.log(localStorage.getItem('user').email);
 
     if (!title || !location || !startDate || !endDate) {
         return res.json({
@@ -223,9 +226,26 @@ app.post('/api/createplan', function (req, res) {
         })
     }
 
-    // User.updateOne(
-    //     {email: }
-    // )
+    console.log("Updating " + current_user_email);
+    User.updateOne(
+        {email: current_user_email},
+        {$push: { plans: {
+            title,
+            location,
+            startDate, 
+            endDate,
+        }}},
+        function (err, result) {
+            if (err) {
+                const message = `Error changing ${current_user_email}`
+                return res.json({
+                    status: 'fail',
+                    message,
+                })
+            }
+        }
+    )
+
     res.json({
         status: 'success',
         message: 'Done making a plan',
