@@ -6,6 +6,10 @@ import { useDispatch } from "react-redux";
 import { login } from "../../store/slices/authSlice";
 import "./PlanATrip.css"
 
+const style = {
+    color: 'red'
+}
+
 const formSchema = z.object({
     title: z.string().min(1, "Enter a title"),
     location: z.string().min(1, "Enter a location"),
@@ -24,7 +28,7 @@ function PlanATrip(props) {
     
 
     function handleCreatePlan(event){
-        // console.log(`Creating "${title}" to go to ${location} from ${startDate} to ${endDate}`)
+        // console.log(`Creating "${title}" to go to ${location} from ${startDate} to ${endDate} with ${travelers}`)
         console.log(event)
         fetch('/api/createplan', {
             method: 'POST',
@@ -52,17 +56,17 @@ function PlanATrip(props) {
                         <p className="or"><span></span></p>
 
                         <div className="plan-fields">
-                            <label> <b>Trip Title</b></label>
+                            <label> <b>Trip Title</b><b style={style}> *</b></label>
                             <input className="location" type="text" placeholder="Enter a title" name="uname" {...register("title")} />
                             {errors.title && <p className="text-danger">{errors.title?.message}</p>}
 
-                            <label > <b>Location</b></label>
+                            <label > <b>Location</b> <b style={style}> *</b></label>
                             <input className="location" type="text" placeholder="Enter a location" name="uname" {...register("location")} />
                             {errors.location && <p className="text-danger">{errors.location?.message}</p>}
 
                             <div className="date-label">
-                                <label id="start-label"><b>Start Date</b></label>
-                                <label id="end-label"><b>End Date</b></label>
+                                <label id="start-label"><b>Start Date</b><b style={style}> *</b></label>
+                                <label id="end-label"><b>End Date</b><b style={style}> *</b></label>
                             </div>
                             <div>
                                 <input type="date" placeholder="Start date" name="startDate" {...register("startDate")} />

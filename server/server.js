@@ -216,7 +216,7 @@ app.post('/api/login', function (req, res) {
 
 app.post('/api/createplan', function (req, res) {
     console.log("[PLAN A TRIP]");
-    const { title, location, startDate, endDate, travelers, hotels, activities, restaurants} = req.body;
+    const { title, location, startDate, endDate} = req.body;
 
 
     if (!title || !location || !startDate || !endDate) {
@@ -234,6 +234,10 @@ app.post('/api/createplan', function (req, res) {
             location,
             startDate, 
             endDate,
+            travelers: [''],
+            hotels: [''],
+            activities: [''],
+            restaurants: [''],
         }}},
         function (err, result) {
             if (err) {

@@ -1,20 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { get } from 'react-hook-form';
-import PlanATrip from "../PlanATrip/PlanATrip";
 import PlanList from "../PlanList/PlanList";
-
-const plan = {
-  key: 0,
-  title: "First Time In Rome",
-  location: "Rome",
-  startDate: "2023-01-01",
-  endDate: "2023-01-14",
-  travelers: ["John", "Mary", "Paul"],
-  hotels: ["4 seasons", "Holiday Inn", "Hilton"],
-  activities: ["Colosseum", "Trevi Fountain", "Vatican Museum"],
-  restaurants: ["Felice e Testaccio", "Pianostrada", "Marigold"],
-}
-
 
 function PlanPage(props) {
 
