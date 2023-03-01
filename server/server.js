@@ -252,6 +252,33 @@ app.post('/api/createplan', function (req, res) {
     })
 })
 
+app.post('/api/getplans', function (req, res) {
+    console.log("RETTRIEVING PLANS");
+
+    User.findOne(
+        {email: current_user_email},
+        function (err, result) {
+            if (err) {
+                const message = `Error finding ${current_user_email} object`
+                return res.json({
+                    status: 'fail',
+                    message,
+                })
+            }
+
+            res.json({
+                status: "success",
+                message: "Pulled user data",
+                data: {
+                    result
+                }
+            })
+        }
+        
+
+    )
+})
+
 app.listen(port, function () {
     console.log(`Example app listening on port ${port}`)
 })

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import { get } from 'react-hook-form';
 import PlanATrip from "../PlanATrip/PlanATrip";
 import PlanList from "../PlanList/PlanList";
 
@@ -14,26 +15,36 @@ const plan = {
   restaurants: ["Felice e Testaccio", "Pianostrada", "Marigold"],
 }
 
-// Get the current user's plans
-const plans = [plan];
 
-class PlanPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      plans
-    }
-  }
+function PlanPage(props) {
+
+  const [plans, setPlans] = useState([]);
+
+  useEffect(() => {
+    fetch('/api/getplans', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === 'success') {
+          setPlans(data.data.result.plans)
+          console.log(data.message);
+        } else {
+          console.error(data.message);
+        }
+      })
+      .catch(err => { })
+  }, [])
 
 
-  render() {
-    return (
-      <React.Fragment>
-        <PlanList plans={this.state.plans} />
-      </React.Fragment>
-  
-    );
-  }
+  return (
+    <div className='PlanPage'>
+      <PlanList plans={plans} />
+    </div>
+  );
 };
 
 export default PlanPage;  
