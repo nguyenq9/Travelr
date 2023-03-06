@@ -25,7 +25,16 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=<key>&callback=initMap"async></script>
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <script type="module" src="../src/components/Activities/Map.mjs" ></script>
+    
+    
+  
+    
     <title>Travelr</title>
   </head>
   <body>
@@ -41,5 +50,9 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
+    <script 
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsufdamQaxOQ5M1hsT4x_P5OLe4x7gCN4&libraries=places&callback=initMap" defer></script>
+
   </body>
 </html>
