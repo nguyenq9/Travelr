@@ -41,3 +41,12 @@
     line-height: 1rem;
   }
   
+  .delete-btn {
+    color: #D3D3D3;
+    font-size: 20px;
+    /* background-color: red; */
+  }
+
+  .delete-btn:hover{
+    color: black;
+  }
