@@ -1,62 +1,40 @@
-.search-container {
+.containerz {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 50%;
-  margin: 0 auto;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
   padding: 20px;
 }
 
-.search-input {
-  width: 45%;
-  height: 35px;
-  padding: 10px;
-  border: none;
+.card {
+  
+  width: 30%;
+  margin: 10px;
+  border: 1px solid gray;
   border-radius: 5px;
-  font-size: 14px;
-}
-.search-btn {
-  width: 10%;
-  height: 35px;
-  border: none;
-  border-radius: 15px;
-  background-color:#FAC022;
-  color: black;
-  font-size: 14px;
-  text-align: center;
-  cursor: pointer;
-}
-.search-btn-ex {
-display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 50%;
-  margin: 0 auto;
-  padding: 20px;
-
-}
-.sortOptions {
- display: flex;
- align-items: center;
- justify-content: space-around;
- font-size: 20px;
- text-align: center;
+  overflow: hidden;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-.Hotels {
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
+.card h2 {
+  font-size: 10px;
+  margin: 10px;
 }
 
-.search-options ul{
+.card p {
+  margin: 10px;
+}
+
+.card-rating {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
   align-items: center;
-  list-style: none;
-  padding: 5px;
-  margin: 0;
+  margin: 10px;
 }
 
+.card-rating span {
+  margin-left: 5px;
+}
+
+.card-reviews {
+  margin: 10px;
+}
