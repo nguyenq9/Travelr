@@ -13,7 +13,7 @@ const Activities = () => {
                 </div>
 
                 <div id="map"></div>
-
+                
                 <div id="listing">
                 <table id="resultsTable">
                     <tbody id="results"></tbody>

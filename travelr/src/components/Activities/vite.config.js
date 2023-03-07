@@ -8,4 +8,18 @@ export default defineConfig({
         ? 443
         : undefined,
   },
+  resolve: {
+    extensions: ['.js', '.mjs'],
+    alias: {
+      'my-module': 'path/to/my-module.mjs'
+    },
+    modules: [
+      "node_modules",
+      "src",
+    ],
+    contentType: {
+      '.mjs': 'application/javascript'
+    }
+  },
+  
 });
