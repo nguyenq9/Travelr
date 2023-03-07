@@ -81,7 +81,9 @@ function PlanATrip(props) {
                             <input type="date" placeholder="End date" name="endDate" required />*/}
                         </div>
                         <br></br>
-                        <button type="submit" className="create-btn">Create Plan</button>
+                        <button type="submit" className="create-btn">
+                            Create Plan
+                        </button>
                     </form>
                 </div>
             </div>
