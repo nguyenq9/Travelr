@@ -4,6 +4,8 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
+const axios = require('axios')
+
 dotenv.config()
 
 const app = express()
@@ -15,6 +17,7 @@ const port = 1337
 //SET THE VARIABLE OF THE DB EVIRONMENT
 const url = process.env.DATABASE_URL
 
+const google_api_key = process.env.GOOGLE_API_KEY
 var current_user_email = ""
 
 // user schema
@@ -226,12 +229,44 @@ app.post('/api/createplan', function (req, res) {
         })
     }
 
+    var location_image;
+    var place_id;
+    var get_url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${location}&types=geocode&key=AIzaSyAoKnUgNAayRCZVCVMwuMmEgmS7NJhQaQU`
+    var config = {
+        method: 'get',
+        url: get_url,
+        headers: { }
+      };
+
+    axios(config).then(function (res) {
+        place_id = res.data['predictions'][0]['place_id']
+        console.log(place_id)
+      }).catch(function (err) {
+        console.log(err)
+      })
+
+    get_url = `https://maps.googleapis.com/maps/api/place/details/json?fields=photo&place_id=${place_id}&key=AIzaSyAoKnUgNAayRCZVCVMwuMmEgmS7NJhQaQU`
+      config = {
+        method: 'get',
+        url: get_url,
+        headers: { }
+      };
+
+      axios(config).then(function (res) {
+        place_id = res.data['predictions'][0]['place_id']
+        console.log(place_id)
+      }).catch(function (err) {
+        console.log(err)
+      })
+    
+
     console.log("Updating " + current_user_email);
     User.updateOne(
         {email: current_user_email},
         {$push: { plans: {
             title,
             location,
+            location_image: location_image,
             startDate, 
             endDate,
             travelers: [''],
