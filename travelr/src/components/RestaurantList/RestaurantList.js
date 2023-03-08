@@ -18,7 +18,9 @@ class RestaurantList extends React.Component {
     render() {
         return(
             <div className="RestaurantList">
-                <Restaurant restaurant={this.restaurant} />
+                {this.props.businesses.map((business, i) => {
+                   return <Restaurant business={business} key={business.id} />;
+                })}
             </div>
         )
     }
