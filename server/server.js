@@ -22,7 +22,6 @@ var current_user_email = ""
 //DEFINE THE SHCEMA HERE
 
 const plan = {
-  key: 0,
   title: "First Time In Rome",
   location: "Rome",
   startDate: "2023-01-01",
@@ -263,6 +262,7 @@ app.post('/api/signup', function (req, res) {
                     message: 'Failed to create a new user',
                 })
             }
+            current_user_email = email
             res.json({
                 status: 'success',
                 message: "Successfully made a new user",
@@ -381,6 +381,40 @@ app.post('/api/createplan', function (req, res) {
     res.json({
         status: 'success',
         message: 'Done making a plan',
+    })
+})
+
+app.post('/api/deleteplan', function (req, res) {
+    console.log("[DELETING A TRIP]");
+    const { title } = req.body;
+
+
+    if (!title) {
+        return res.json({
+            status: 'fail',
+            message: 'Missing required input fields. (key, title, location, startDate, endDate)'
+        })
+    }
+
+    console.log("Deleting "+ title + " from " + current_user_email);
+
+    User.updateOne(
+        {email: current_user_email},
+        {$pull: {plans: {title: title}}},
+        function (err, result) {
+            if (err) {
+                const message = `Error changing ${current_user_email}`
+                return res.json({
+                    status: 'failed deleting',
+                    message,
+                })
+            }
+        }
+    )
+
+    res.json({
+        status: 'success',
+        message: 'Done deleting a plan',
     })
 })
 
