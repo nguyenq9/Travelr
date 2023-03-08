@@ -229,65 +229,72 @@ app.post('/api/createplan', function (req, res) {
         })
     }
 
-    var location_image;
-    var place_id;
-    var get_url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${location}&types=geocode&key=AIzaSyAoKnUgNAayRCZVCVMwuMmEgmS7NJhQaQU`
+    var location_image = "";
+    var place = location.split(' ').join('-').toLowerCase()
+    var get_url = `https://api.teleport.org/api/urban_areas/slug:${place}/images/`
     var config = {
         method: 'get',
         url: get_url,
         headers: { }
-      };
-
-    axios(config).then(function (res) {
-        place_id = res.data['predictions'][0]['place_id']
-        console.log(place_id)
-      }).catch(function (err) {
-        console.log(err)
-      })
-
-    get_url = `https://maps.googleapis.com/maps/api/place/details/json?fields=photo&place_id=${place_id}&key=AIzaSyAoKnUgNAayRCZVCVMwuMmEgmS7NJhQaQU`
-      config = {
-        method: 'get',
-        url: get_url,
-        headers: { }
-      };
-
-      axios(config).then(function (res) {
-        place_id = res.data['predictions'][0]['place_id']
-        console.log(place_id)
-      }).catch(function (err) {
-        console.log(err)
-      })
-    
-
-    console.log("Updating " + current_user_email);
-    User.updateOne(
-        {email: current_user_email},
-        {$push: { plans: {
-            title,
-            location,
-            location_image: location_image,
-            startDate, 
-            endDate,
-            travelers: [''],
-            hotels: [''],
-            activities: [''],
-            restaurants: [''],
-        }}},
-        function (err, result) {
-            if (err) {
-                const message = `Error changing ${current_user_email}`
-                return res.json({
-                    status: 'fail',
-                    message,
-                })
+    };
+    console.log(get_url)
+    axios(config).then(function (response) {
+        location_image = response.data['photos'][0]['image']['mobile']
+        console.log("Updating " + current_user_email);
+        User.updateOne(
+            {email: current_user_email},
+            {$push: { plans: {
+                title,
+                location,
+                location_image: location_image,
+                startDate, 
+                endDate,
+                travelers: [''],
+                hotels: [''],
+                activities: [''],
+                restaurants: [''],
+            }}},
+            function (err, result) {
+                if (err) {
+                    const message = `Error changing ${current_user_email}`
+                    return res.json({
+                        status: 'fail',
+                        message,
+                    })
+                }
             }
-        }
-    )
+        )
+    
+        res.json({
+            status: 'success',
+            message: 'Done making a plan',
+        })
 
-    res.json({
-        status: 'success',
-        message: 'Done making a plan',
+    }).catch(function (err) {
+        console.log(err)
+        User.updateOne(
+            {email: current_user_email},
+            {$push: { plans: {
+                title,
+                location,
+                location_image: "https://www.ytravelblog.com/wp-content/uploads/2018/11/planning-a-trip-tips-and-challenges-2.jpg",
+                startDate, 
+                endDate,
+                travelers: [''],
+                hotels: [''],
+                activities: [''],
+                restaurants: [''],
+            }}},
+            function (err, result) {
+                if (err) {
+                    const message = `Error changing ${current_user_email}`
+                    return res.json({
+                        status: 'fail',
+                        message,
+                    })
+                }
+            }
+        )
     })
 })
 

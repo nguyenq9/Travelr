@@ -17,6 +17,7 @@ import logo from './travelpal.png'
 import { padding } from '@mui/system';
 import './ResponsiveAppBar.css'
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import { logout } from "../../store/slices/authSlice";
 
 const logoStyle = {
@@ -38,12 +39,14 @@ const settings = ['Profile', 'Plans'];
 function ResponsiveAppBar(props) {
   const { user } = useSelector(state => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   // logout function
   const logoutHandler = () => {
     // removing current user from redux store
     dispatch(logout());
     localStorage.removeItem('user');
+    navigate("/")
   };
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);

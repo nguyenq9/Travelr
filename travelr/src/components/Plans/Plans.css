@@ -19,7 +19,7 @@
   .Plan .image-container {
     height: 16.66rem;
     margin-bottom: 1rem;
-    background-image: url(../../images/rome.jpg);
+    /* background-image: url(../../images/rome.jpg); */
     background-size: 100% 100%;
 
   }
