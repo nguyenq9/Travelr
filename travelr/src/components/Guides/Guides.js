@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import GuidePreviewBar from "./GuidePreviewBar";
 import italy from "../../images/guides/italy.jpg"
 import route66 from "../../images/guides/route66.jpg"
@@ -8,13 +8,36 @@ const lorem = "Synergize productive mindfulness throughput disband the squad but
 
 function Guides() {
 
+    const [guides, setGuides] = useState([])
+
+    useEffect(() => {
+        fetch('/api/getallguides', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.status === 'success') {
+                    setGuides(res.data.result);
+                } else {
+                    console.error(res.message);
+                }
+            })
+            .catch(err => { })
+
+    }, [])
+
     return (
         <div className="Guides">
             <h1>Guides</h1>
             <h4>Get expert travel advice, destination recommendations, and pre-built itineraries from our team of experienced world travelers.</h4>
-            <GuidePreviewBar img={italy} title="Giro d'Italia" author="Aurora Romano" description={lorem} guide_post_id="1"/>
-            <GuidePreviewBar img={japan} title="Essentials of Japan" author="Hiro Nakamura" description={lorem} guide_post_id="2"/>
-            <GuidePreviewBar img={route66} title="Classic Route 66" author="Joseph McDonald" description={lorem} guide_post_id="3"/>
+            {
+                guides.map((guide) => {
+                    return <GuidePreviewBar img={guide.headersrc} title={guide.title} author={guide.author} description={guide.description} guide_post_id={guide._id} key={guide._id}/>
+                })
+            }
         </div>
     );
 }
