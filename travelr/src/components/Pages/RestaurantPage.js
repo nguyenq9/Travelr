@@ -1,31 +1,35 @@
 import RestaurantList from "../RestaurantList/RestaurantList";
 import SearchBar from "../SearchBar/SearchBar";
 import React from 'react';
+import Yelp from "../../util/Yelp";
 
-const restaurant = {
-  imageSrc: "",
-  name: "Schweinhaus Biergarten",
-  address: "1330 N State St",
-  city: "Bellingham",
-  state: "WA",
-  zipCode: "98225",
-  category: "Bavarian",
-  rating: 4.5,
-  reviewCount: 906,
-  };
 
-const restaurants = [restaurant, restaurant, restaurant, restaurant, restaurant, restaurant];
+class RestaurantPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      businesses: []
+    };
+    this.searchYelp = this.searchYelp.bind(this);
+  }
 
-const RestaurantPage = () => {
-  return (
-    <>
-      <SearchBar />
-      <div>
-        Highest
-      </div>
-      <RestaurantList restaurants={restaurants} />
-    </>
-  );
-};
+  searchYelp(term, location, sortBy) {
+    Yelp.search(term, location, sortBy)
+    .then((businesses) => {
+      this.setState({
+        businesses: businesses
+      })
+    })
+  }
+
+  render() {
+    return (
+      <>
+        <SearchBar searchYelp={this.searchYelp} />
+        <RestaurantList businesses={this.state.businesses} />
+      </>
+    )
+  }
+}
 
 export default RestaurantPage;
