@@ -19,7 +19,7 @@ function HotelSearch() {
     const data = await response.json();
     const sortedHotels = data.results
       .sort((a, b) => b.user_ratings_total - a.user_ratings_total)
-      .slice(0, 6)
+      .slice(0, 20)
       .map((hotel) => ({
         ...hotel,
         price_level_display: hotel.price_level ? `$${hotel.price_level}` : "N/A",
@@ -35,37 +35,35 @@ function HotelSearch() {
     console.log(hotel);
   };
 
-  const sortedHotels = [...hotels].sort((a, b) => b.rating - a.rating);
+  const sortedHotels = [...hotels].sort((a, b) => b.user_ratings_total - a.user_ratings_total);
 
   return (
     <div>
-      <h1>Hotel Search</h1>
       <div>
+      <h1 className="title">Hotel Search</h1>
         <input
           type="text"
           placeholder="Enter a city"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
         />
-        <button onClick={searchHotels}>Search</button>
+        <button className="input" onClick={searchHotels}>Search</button>
       </div>
       <div>
-        <label className="sort-select">Sort By:</label>
+        <label className="sort-select-t">Sort By:</label>
         <select className="sort-select" value={sortBy} onChange={handleSortChange}>
           <option className="rating">Rating</option>
         </select>
       </div>
       <div className="containerz">
-        <div className="hotel-card">
         {sortedHotels.map((hotel) => (
-          <div key={hotel.place_id} onClick={() => handleHotelClick(hotel)}>
+          <div className="hotel-card" key={hotel.place_id} onClick={() => handleHotelClick(hotel)}>
             <h2>{hotel.name}</h2>
-            <p>Rating: {hotel.rating}</p>
+            <p>Rating: {hotel.rating}/5</p>
             <p>Reviews: {hotel.user_ratings_total}</p>
           </div>
           
         ))}
-        </div>
       </div>
     </div>
   );
