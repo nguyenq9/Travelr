@@ -4,24 +4,25 @@ import './Restaurants.css';
 
 class Restaurant extends React.Component {
     render() {
+        const { business } = this.props
         return(
             <div className="Restaurant">
-            <div className="image-container">
-                <img src={this.props.restaurant.imageSrc} alt=''/>
-            </div>
-            <h2>{this.props.restaurant.name}</h2>
-            <div className="Restaurant-information">
-                <div className="Restaurant-address">
-                <p>{this.props.restaurant.address}</p>
-                <p>{this.props.restaurant.city}</p>
-                <p>{this.props.restaurant.state} {this.props.restaurant.zipCode}</p>
+                <div className="image-container">
+                    <img src={business.imageSrc} alt=''/>
                 </div>
-                <div className="Restaurant-reviews">
-                <h3>{this.props.restaurant.category}</h3>
-                <h3 className="rating">{this.props.restaurant.rating} stars</h3>
-                <p>{this.props.restaurant.reviewCount} reviews</p>
+                <h2>{business.name}</h2>
+                <div className="Restaurant-information">
+                    <div className="Restaurant-address">
+                    <p>{business.address}</p>
+                    <p>{business.city}</p>
+                    <p>{business.state} {business.zipCode}</p>
+                    </div>
+                    <div className="Restaurant-reviews">
+                    <h3>{business.category}</h3>
+                    <h3 className="rating">{business.rating} stars</h3>
+                    <p>{business.reviewCount} reviews</p>
+                    </div>
                 </div>
-            </div>
             </div>
         )
     }
