@@ -10,7 +10,7 @@ const Account = () => {
     const name_string = `${n.firstName} ${n.lastName}`
     const [firstName, setFirstName] = useState(n.firstName);
     const [lastName, setLastName] = useState(n.lastName);
-    const [email, setEmail] = useState("name@gmail.com");
+    const [email, setEmail] = useState(n.email);
     return (
         <>
             <div className="container">
