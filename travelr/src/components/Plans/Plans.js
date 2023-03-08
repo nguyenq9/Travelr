@@ -2,6 +2,7 @@ import React from "react";
 import { Link, Navigate } from "react-router-dom";
 import "./Plans.css";
 
+
 class Plans extends React.Component {
   constructor(props) {
     super(props);
@@ -47,8 +48,7 @@ class Plans extends React.Component {
     return (
       <div className="Plan">
         <div onClick={this.handlePlanClick}>
-          <div className="image-container">
-            {/* <img src={this.props.business.imageSrc} alt=""/> */}
+          <div className="image-container" style={{backgroundImage: `url(${this.props.plan.location_image})`}}>
           </div>
           <h2>{this.props.plan.title}</h2>
           <div className="plan-information">

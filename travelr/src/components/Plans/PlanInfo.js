@@ -97,8 +97,8 @@ function PlanInfo (props) {
                                 </div>
                             </div>
                             <div className='cta-flex'>
-                                <button className="cta-b">Update</button>
-                                <button className="cta-c">Cancel</button>
+                                <button className="cta-b" style={{backgroundColor: "#007aab"}}>Update</button>
+                                <button className="cta-c" style={{backgroundColor: "#007aab"}}>Cancel</button>
                             </div>
                         </div>
                     </div>
