@@ -96,6 +96,10 @@ const guideSchema = new mongoose.Schema({
     imagesrc: {
         type: String,
         required: true,
+    },
+    plan: { 
+        type : Object , 
+        required: true, 
     }
 })
 
@@ -141,7 +145,16 @@ Guide.findOne({title: 'Giro d\'Italia'}, function (err, result) {
                 
                 p3: 'While crowded, Venice is an amazing place to visit. Its not the cheapest destination in Italy but the citys iconic architecture and picturesque canals are everything you dream them to be. The main sights not to be missed include Piazza San Marco, Doges Palace, Rialto Bridge, the Basilica San Marco, and the citys countless museums. Be sure to head to the old Jewish Ghetto for hip bars and cheap drinks (the English word ghetto comes from this area of Venice). Venice is also home to several world-class festivals. In late winter, the epic Carnival takes place here, and in August, the prestigious Venice Film Festival takes over the nearby island of Lido.',
 
-                imagesrc: 'https://media.nomadicmatt.com/2022/italyguide4.jpg'
+                imagesrc: 'https://media.nomadicmatt.com/2022/italyguide4.jpg',
+
+                plan: {
+                    title: "Giro d\'Italia",
+                    location: "Italy",
+                    tripLength: 5,
+                    hotels: ["4 seasons", "Holiday Inn", "Hilton"],
+                    activities: ["Cinque Terre", "Tuscan Hill Towns", "Venice"],
+                    restaurants: ["La Pergola", "Osteria Francescana", "Le Calandre"],
+                }
                 
             }, function(err, user) {
                 if (err) {
@@ -171,7 +184,18 @@ Guide.findOne({title: 'Essentials of Japan'}, function (err, result) {
                 
                 p3: 'Japan has a rich, complex, and varied history. Its these very complexities that have created such a fascinating culture today. Japan has spent centuries vacillating between isolationist tendencies and rapid outward expansion. Though its a moderately sized country, it has the 10th highest population in the world—most of that is densely packed into urban centers. Even more remarkable is that much of Japanese land isnt inhabited. The terrain is forested mountains and volcanoes. The country is very, very homogeneous—98.5% of the country is ethnically Japanese. Shintoism, the predominate religion dates back to 1,000 B.C.E., and is often practiced alongside Buddhism.',
     
-                imagesrc: 'https://photos.smugmug.com/Asia/Japan/Tokyo/i-pB46bkT/0/X2/Tokyo-55-X2.jpg'
+                imagesrc: 'https://photos.smugmug.com/Asia/Japan/Tokyo/i-pB46bkT/0/X2/Tokyo-55-X2.jpg',
+
+                plan: {
+                    title: "Essentials of Japan",
+                    location: "Japan",
+                    tripLength: 5,
+                    hotels: ["4 seasons", "Holiday Inn", "Hilton"],
+                    activities: ["Kinkaku-ji", "Fushimi Inari Taisha", "Sensō-ji"],
+                    restaurants: ["Gyopao Gyoza Roppongi", "NINJA Cafe & Bar", "Sushisho Masa"],
+                }
+
+
                 
             }, function(err, user) {
                 if (err) {
@@ -201,7 +225,16 @@ Guide.findOne({title: 'Classic Route 66'}, function (err, result) {
                 
                 p3: 'Today it is that classic roadside culture and the appeal of the open road that continues to attract tourists. Route 66 has inspired songs, films, TV shows, books, and even a clothing brand. Even though Route 66 was officially decommissioned in 1985, people from around the world come to drive this mythic highway, stay in vintage motels, gawk at odd roadside attractions, and eat American road food. For some travelers, it is a trip back in time to revisit a road they once traveled on a family holiday, whereas for others a Route 66 road trip is the ultimate symbol of Americana.',
     
-                imagesrc: 'https://independenttravelcats.com/wp-content/uploads/2015/12/Route-66-gas-station_by_Laurence-Norah.jpg'
+                imagesrc: 'https://independenttravelcats.com/wp-content/uploads/2015/12/Route-66-gas-station_by_Laurence-Norah.jpg',
+
+                plan: {
+                    title: "Classic Route 66",
+                    location: "USA",
+                    tripLength: 20,
+                    hotels: ["The car!", "A tent!"],
+                    activities: ["Grand Canyon", "Barringer Crater", "The Painted Desert"],
+                    restaurants: ["Route 66 Diner", "The Eatery on Route 66", "66 Diner"],
+                }
                 
             }, function(err, user) {
                 if (err) {
@@ -533,6 +566,54 @@ app.post('/api/getguide', function (req, res) {
             })
         }
     })
+})
+
+app.post('/api/insertguideplan', function (req, res) {
+    const { title, location, location_image, startDate, endDate, hotels, activities, restaurants } = req.body;
+
+    if (!title || !location || !location_image || !startDate || !endDate || !hotels || !activities || !restaurants) {
+        return res.json({
+            status: 'fail',
+            message: 'Missing required input fields.'
+        })
+    }
+
+    if (current_user_email === '') {
+        return res.json({
+            status: 'notloggedin',
+            message: 'Not logged in!'
+        })
+    }
+
+    User.updateOne(
+        {email: current_user_email},
+        {$push: { plans: {
+            title,
+            location,
+            location_image: location_image,
+            startDate, 
+            endDate,
+            travelers: [''],
+            hotels: hotels,
+            activities: activities,
+            restaurants: restaurants,
+        }}},
+        function (err, result) {
+            if (err) {
+                const message = `Error changing ${current_user_email}`
+                return res.json({
+                    status: 'fail',
+                    message,
+                })
+            }
+        }
+    )
+
+    res.json({
+        status: "success",
+        message: 'Added plan',
+    })
+
 })
 
 app.listen(port, function () {

@@ -1,15 +1,75 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import { Box } from '@mui/system'
-import { Typography } from '@mui/material'
+import { Button, Modal, Typography } from '@mui/material'
+import { useSelector } from "react-redux";
 
 
 function GuidePage() {
-    const { guide_post_id } = useParams();
-    const [guideDetail, setGuideDetail] = useState({});
+    // Set up hooks for later use
+    const { guide_post_id } = useParams(); // Get post id from url
+    const [guideDetail, setGuideDetail] = useState({}); // Store details as state
+    const [open, setOpen] = useState(false); // For modal
+    const [startDate, setStartDate] = useState(''); // Store user's start date as state
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+    const { user, loaded } = useSelector(state => state.auth); // Get login state
 
+    // Declare helper functions
+    const handleOpen = () => setOpen(true); // For modal
+    const handleClose = () => setOpen(false); // For modal
 
+    const handleAddPlan = () => { // Client side validations + API call to add plan to user
+        console.log(startDate)
+        if (startDate === '') {
+            setError('Please set a start date.')
+            return;
+        }
 
+        if (!user.email) {
+            navigate('/Login')
+            return;
+        }
+
+        var chooseDate=new Date(startDate);
+        chooseDate.setDate(chooseDate.getUTCDate() + guideDetail.plan.tripLength);
+        var endDate = chooseDate.getFullYear()+'-'+('0'+(chooseDate.getMonth()+1)).slice(-2)+'-'+('0'+(chooseDate.getDate())).slice(-2);
+
+        let payload = {
+            title: guideDetail.title,
+            location: guideDetail.plan.location,
+            location_image: guideDetail.headersrc,
+            startDate: startDate,
+            endDate: endDate,
+            hotels: guideDetail.plan.hotels,
+            activities: guideDetail.plan.activities,
+            restaurants: guideDetail.plan.restaurants,
+        }
+
+        fetch('/api/insertguideplan', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.status === 'success') {
+                    navigate('/Plans')
+                } else {
+                    console.error(res.message);
+                }
+            })
+            .catch(err => { })
+    }
+
+    const handleDateUpdate = (e) => {
+        setStartDate(e.target.value)
+        setError('')
+    }
+
+    // Declare styling for MUI components
     const contentStyle = {
         backgroundColor: '#47A4C7',
         borderRadius: 5,
@@ -27,6 +87,42 @@ function GuidePage() {
         width: 300
     }
 
+    const buttonStyle = {
+        backgroundColor: '#111111',
+        color: 'white',
+        '&:hover': {
+            backgroundColor: '#444444',
+            color: 'white',
+        }
+    }
+
+    const buttonSubmitStyle = {
+        marginTop: '5px',
+        left: '25%',
+        width: '100px',
+        backgroundColor: '#47A4C7',
+        color: 'white',
+        '&:hover': {
+            backgroundColor: '#47A4C7',
+            color: 'white',
+        }
+    }
+
+    const modalStyle = {
+        display: 'block',
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 200,
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4,
+        backgroundColor: 'white',
+    }
+
+    // Fetch guide details
     useEffect(() => {
         fetch('/api/getguide?id=' + guide_post_id, {
             method: 'POST',
@@ -37,14 +133,15 @@ function GuidePage() {
             .then(res => res.json())
             .then(res => {
                 if (res.status === 'success') {
-                    setGuideDetail(res.data.result);
+                    setGuideDetail(res.data.result)
                 } else {
                     console.error(res.message);
                 }
             })
             .catch(err => { })
-    }, [])
+    }, [])    
 
+    // One last styling, dependent on guide details.
     const bannerStyle = {
         display: 'flex',
         alignItems: 'center',
@@ -65,8 +162,6 @@ function GuidePage() {
         backgroundRepeat: 'no-repeat',
     }
 
-
-
     return (
         <div>
             <Box sx={bannerStyle}>
@@ -81,7 +176,27 @@ function GuidePage() {
                 <p>{guideDetail.p1}<img style={imageStyle} src={guideDetail.imagesrc} /></p>
                 <p>{guideDetail.p2}</p> 
                 <p>{guideDetail.p3}</p>
-
+                
+                <Button onClick={handleOpen} sx={buttonStyle}>Add this plan!</Button>
+                
+                <Modal
+                open={open}
+                onClose={handleClose}
+                >
+                    <Box sx={modalStyle}>
+                        <label>Enter a start date: </label>
+                        <br />
+                        <input type="date" 
+                        placeholder="Start date" 
+                        name="startDate" 
+                        style={{width: 200, margin: 'auto'}} 
+                        value={startDate} 
+                        onChange={(e) => handleDateUpdate(e)}/>
+                        <p>{error === '' ? '' : error}</p>
+                        <Button sx={buttonSubmitStyle} onClick={handleAddPlan}>Submit</Button>
+                    </Box>
+                    
+                </Modal>
             </Box>
         </div>
     )

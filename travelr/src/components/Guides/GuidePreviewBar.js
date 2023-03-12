@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
-
 import Card from '@mui/material/Card';
-import { Container, CardContent, Collapse, Typography } from '@mui/material';
+import { CardContent, Collapse, Typography } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 
+
+// Builds preview bar for guides on the guides home page.
+// Takes guide details to build custom preview bars
 function GuidePreviewBar(props) {
+    // Set up hooks for later use
     const [isHovered, setIsHovered] = useState(false)
     const navigate = useNavigate();
 
+    // Declare MUI stylings
     const glow = {
         boxShadow: "0 0 50px 5px #48abe0"
     }
