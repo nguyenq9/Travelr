@@ -9,8 +9,9 @@ function HotelSearch() {
 
   useEffect(() => {
     searchHotels();
-  }, []);
-
+  },[]);
+  // Pulls API key and makes a CORS proxied request to the Google Places API to retrieve information on local hotels.
+  // Grabs the first 20 results, sorts by rating and # of reviews, averages them and returns the result. 
   const API_KEY = process.env.REACT_APP_GO_KEY;
   const searchHotels = async () => {
     const response = await fetch(
@@ -26,7 +27,7 @@ function HotelSearch() {
       }));
     setHotels(sortedHotels);
   };
-
+ // Handles sort changes.
   const handleSortChange = (e) => {
     setSortBy(e.target.value);
   };
@@ -34,7 +35,7 @@ function HotelSearch() {
   const handleHotelClick = (hotel) => {
     console.log(hotel);
   };
-
+  // Handles returning and formatting of the hotels.
   const sortedHotels = [...hotels].sort((a, b) => b.user_ratings_total - a.user_ratings_total);
 
   return (
