@@ -1,17 +1,17 @@
 const apiKey = '0bCEaaaQ_WVREP6Je8AakwUwqHwIQkFinL8xz_9aF5V_vqTpiF5bKhNMKUtRAuMp0-cms3DIpvfKO3gJRPHqwdd9y7eG2qFBJ7de_RqVp7QY61s2KrzsLc8fkHToY3Yx';
 
-const Yelp = {
+const Yelp = {  // Creates a Yelp Object to connect to the API
     search(term, location, sortBy) {
-        return fetch(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${term}&location=${location}&sort_by=${sortBy}`, {
+        return fetch(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${term}&location=${location}&sort_by=${sortBy}`, {  // formulates the URL
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${apiKey}`,
             }
         })
-        .then((response) => {
+        .then((response) => {  // returns the JSON response
             return response.json();
         })
-        .then((jsonResponse) => {
+        .then((jsonResponse) => {  // Formats the JSON response and puts it in an easily accessible business object
             if (Array.isArray(jsonResponse?.businesses) && jsonResponse?.businesses?.length) {
                 return jsonResponse.businesses.map((business) => ({
                     id: business.id,
@@ -35,4 +35,4 @@ const Yelp = {
     }
 }
 
-export default Yelp;
+export default Yelp;  // exported Yelp object

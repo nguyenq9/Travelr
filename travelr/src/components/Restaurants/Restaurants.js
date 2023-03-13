@@ -1,7 +1,7 @@
 import React from 'react';
 import './Restaurants.css';
 
-
+// JSX for the formatting of the restaurant components, all data is got from the props (which is from the Yelp API)
 class Restaurant extends React.Component {
     render() {
         const { business } = this.props
