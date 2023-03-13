@@ -3,27 +3,15 @@ import './RestaurantList.css';
 import Restaurant from '../Restaurants/Restaurants';
 
 class RestaurantList extends React.Component {
-    restaurant = {
-        imageSrc: "",
-        name: "Schweinhaus Biergarten",
-        address: "1330 N State St",
-        city: "Bellingham",
-        state: "WA",
-        zipCode: "98225",
-        category: "Bavarian",
-        rating: 4.5,
-        reviewCount: 906,
-        };
-
     render() {
         return(
             <div className="RestaurantList">
-                {this.props.businesses.map((business, i) => {
-                   return <Restaurant business={business} key={business.id} />;
+                {this.props.businesses.map((business, i) => {  // renders the list of restaurant objects
+                   return <Restaurant business={business} key={business.id} />;  // gives the restaurant object the business object and the key, fetched from the Yelp API
                 })}
             </div>
         )
     }
 }
 
-export default RestaurantList;
+export default RestaurantList;  // exports the 

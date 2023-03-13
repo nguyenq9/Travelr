@@ -12,16 +12,18 @@ class SearchBar extends React.Component {
             sortBy: 'best_match'
         };
 
-        this.sortByOptions = {
+        this.sortByOptions = {  // gives the sort by options, and allows the user to select from a variety of filters
             'Best Match': 'best_match',
             'Highest Rated': 'rating',
             'Most Reviewed': 'review_count'
         }
+        // binds the functions in the constructor
         this.handleTermChange = this.handleTermChange.bind(this);
         this.handleLocationChange = this.handleLocationChange.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
     }
 
+    // sorting handlers
     getSortByClass(sortByOption) {
         if (this.state.sortBy === sortByOption) {
             return 'active';
@@ -35,23 +37,27 @@ class SearchBar extends React.Component {
         });
     }
 
+    // updates when the term (restaurant name) is changed
     handleTermChange(event) {
         this.setState({
             term: event.target.value
         });
     }
 
+    // updates when the location (zip code) is changed
     handleLocationChange(event) {
         this.setState({
             location: event.target.value
         });
     }
 
+    // uses the Yelp API when the search button is clicked
     handleSearch(event) {
         this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy);
         event.preventDefault();
     }
 
+    // sorts the restaurant list
     renderSortByOptions() {
         return Object.keys(this.sortByOptions).map(sortByOption => {
             let sortByOptionValue = this.sortByOptions[sortByOption];
@@ -61,6 +67,7 @@ class SearchBar extends React.Component {
         });
     }
 
+    // the HTML/JSX code for the UI of the search bar
     render() {
         return(
             <div className="SearchBar">
