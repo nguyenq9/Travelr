@@ -1,0 +1,61 @@
+.Restaurant {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30%;
+    margin: 0 .5rem 2.3rem .5rem;
+    box-shadow: 0 0 transparent, 0 0 transparent, 0px 7px 35px rgba(180, 189, 223, 0,4);
+    padding: 0.8em;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: box-shadow 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background-color: floralwhite;
+}
+.Restaurant:hover {
+    box-shadow: 0 10px 20px 4px rgba(35, 35, 35, 0.1);
+}
+  
+.Restaurant .image-container {
+    height: 100%;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.Restaurant .image-container img {
+    width: 100%;
+    object-fit: contain;
+}
+  
+.Restaurant-information {
+    display: flex;
+    justify-content: space-between;
+}
+  
+.Restaurant-information p {
+    font-size: .88rem;
+    font-weight: 300;
+    line-height: 1rem;
+}
+  
+.Restaurant-address {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+  
+.Restaurant-reviews {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: right;
+}
+  
+.Restaurant-reviews h3 {
+    color: #2C688E;
+    font-weight: 600;
+}
+  
+.Restaurant-reviews .rating {
+    font-size: .88rem;
+    line-height: 1rem;
+}

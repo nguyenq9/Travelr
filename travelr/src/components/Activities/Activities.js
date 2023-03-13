@@ -1,13 +1,21 @@
 import React from "react";
+import { CssBaseline, Grid } from '@mui/material';
+import HotelMap from '../Map-Activities/Map';
 
-class Activities extends React.Component {
-    render(){
+const Activities = () => {
         return (
-            <div className="Activities">
-                Activities Route
-            </div>
+            <>
+            <CssBaseline /> 
+            <Grid container spacing={3} style={{ width: '100%' }}>
+                <Grid>
+                    {<HotelMap />}
+                </Grid>
+                
+                
+            </Grid>
+            </>
+            
         );
-    }
 }
 
 export default Activities;

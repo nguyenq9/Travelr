@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,800&display=swap');
+
+*{
+  font-family: 'Open Sans', sans-serif;
+}
+.containerz {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+
+  font-family: 'Manrope', sans-serif;
+  color: #006a92;
+  width: 35%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1em;
+  margin-bottom:1em;
+  border-radius: .5em;
+  background-color: #fac022be;
+  border-radius: 1em;
+  padding: 1em;
+  box-shadow: 2px 5px 20px rgba(0, 0, 0, 0.884);
+  overflow: hidden;
+
+}
+.title{
+  
+  padding: .5em;
+  font-family: 'Manrope', sans-serif;
+  font-size: 50px;
+  color: #fcf0f0;
+}
+.containerz h2{
+  font-size: 18px;
+}
+.sort-select-t {
+  margin-right:.5em;
+  padding: .25em;
+  font-size: 20px;
+  color: #fcf0f0;
+}
+.input {
+  border-radius: 4px;
+  padding: .72rem 1.7rem;
+  font-weight:600px;
+  transition: background-color .5s;
+}
+.hotel-card {
+  font-family: 'Manrope', sans-serif;
+  color: #efefef;
+  overflow:hidden;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: .5em;
+  margin-bottom:.5em;
+  border-radius: 1em;
+  background-color: #006b92dc;
+  box-shadow: 2px 5px 20px rgba(0, 0, 0, 0.884);
+  padding: .25em;
+}

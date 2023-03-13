@@ -1,78 +1,79 @@
-import React from "react";
+import React, { useState } from 'react';
+import { useForm } from "react-hook-form";
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as z from "zod";
+import { useDispatch } from "react-redux";
+import { login } from "../../store/slices/authSlice";
 import "./PlanATrip.css"
 
+const style = {
+    color: 'red'
+}
 
-class PlanATrip extends React.Component {
-    constructor (props) {
-        super(props);
-        this.state = {
-            title: '',
-            location: '',
-            stateDate: '',
-            endDate: '',            
-        }
-        
-        this.handleTitleChange = this.handleTitleChange.bind(this);
-        this.handleLocationChange = this.handleLocationChange.bind(this);
-        this.handleStartDateChange = this.handleStartDateChange.bind(this);
-        this.handleEndDateChange = this.handleEndDateChange.bind(this);
-        this.handleCreatePlan = this.handleCreatePlan.bind(this);
-    }
-    handleTitleChange(event) {
-        this.setState({title: event.target.value});
-    }
+const formSchema = z.object({
+    title: z.string().min(1, "Enter a title"),
+    location: z.string().min(1, "Enter a location"),
+    startDate: z.string().min(1,"Enter a start date."),
+    endDate: z.string().min(1, "Enter an end date."),
+})
 
-    handleLocationChange(event) {
-        this.setState({location: event.target.value});
-    }
+function PlanATrip(props) {
+    const { register, handleSubmit, formState: {errors} } = useForm({
+        resolver: zodResolver(formSchema)
+    });
+    // const [title, setTitle] = useState('');
+    // const [location, setLocation] = useState('');
+    // const [startDate, setStartDate] = useState('');
+    // const [endDate, setEndDate] = useState('');
+    
 
-    handleStartDateChange(event) {
-        this.setState({startDate: event.target.value});
-    }
-
-    handleEndDateChange(event) {
-        this.setState({endDate: event.target.value});
-    }
-
-    handleCreatePlan(event){
-        // Create plan here
-        const plan = {
-            title: "First Time In Rome",
-            location: "TEST",
-            startDate: "XXXX-XX-XX",
-            endDate: "XXXX-XX-XX",
-            travelers: ["John", "Mary", "Paul"],
-            hotels: ["4 seasons", "Holiday Inn", "Hilton"],
-            activities: ["Colosseum", "Trevi Fountain", "Vatican Museum"],
-            restaurants: ["Felice e Testaccio", "Pianostrada", "Marigold"],
-        }
-        this.props.addPlan(plan);
-        console.log(`Creating "${this.state.title}" to go to ${this.state.location} from ${this.state.startDate} to ${this.state.endDate}`)
-        event.preventDefault();
+    function handleCreatePlan(event){
+        // console.log(`Creating "${title}" to go to ${location} from ${startDate} to ${endDate} with ${travelers}`)
+        console.log(event)
+        fetch('/api/createplan', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(event)
+          })
+            .then(res => res.json())
+            .then(event => {
+              if (event.status === 'success') {
+                console.log(event.message);
+              } else {
+                console.error(event.message);
+              }
+            })
+            .catch(err => { })
     }
 
-    render() {
         return (
             <div className="PlanATrip">
                 <div className="plantrip">
-                    <form>
+                    <form onSubmit={handleSubmit(handleCreatePlan)}>
                         <h2 className="title"><a href="Plan A Trip" title='Home'>Plan a new trip</a></h2>
                         <p className="or"><span></span></p>
 
                         <div className="plan-fields">
-                            <label> <b>Trip Title</b></label>
-                            <input className="location" type="text" placeholder="Enter a title" name="uname" required onChange={this.handleTitleChange}/>
-                            <label > <b>Location</b></label>
-                            <input className="location" type="text" placeholder="Enter a location" name="uname" required onChange={this.handleLocationChange}/>
-                            {/* <label><b>Start Date</b></label>
-                            <input type="date" placeholder="Start date" name="startDate" required /> */}
+                            <label> <b>Trip Title</b><b style={style}> *</b></label>
+                            <input className="location" type="text" placeholder="Enter a title" name="uname" {...register("title")} />
+                            {errors.title && <p className="text-danger">{errors.title?.message}</p>}
+
+                            <label > <b>Location</b> <b style={style}> *</b></label>
+                            <input className="location" type="text" placeholder="Enter a location" name="uname" {...register("location")} />
+                            {errors.location && <p className="text-danger">{errors.location?.message}</p>}
+
                             <div className="date-label">
-                                <label id="start-label"><b>Start Date</b></label>
-                                <label id="end-label"><b>End Date</b></label>
+                                <label id="start-label"><b>Start Date</b><b style={style}> *</b></label>
+                                <label id="end-label"><b>End Date</b><b style={style}> *</b></label>
                             </div>
                             <div>
-                                <input type="date" placeholder="Start date" name="startDate" required onChange={this.handleStartDateChange}/>
-                                <input type="date" placeholder="End date" name="endDate" required onChange={this.handleEndDateChange}/>
+                                <input type="date" placeholder="Start date" name="startDate" {...register("startDate")} />
+                                {errors.startDate && <p className="text-danger">{errors.startDate?.message}</p>}
+
+                                <input type="date" placeholder="End date" name="endDate" {...register("endDate")} />
+                                {errors.endDate && <p className="text-danger">{errors.endDate?.message}</p>}
                             </div>
                             
                             <br></br>
@@ -80,12 +81,14 @@ class PlanATrip extends React.Component {
                             <input type="date" placeholder="End date" name="endDate" required />*/}
                         </div>
                         <br></br>
-                        <button className="create-btn" onClick={this.handleCreatePlan}>Create Plan</button>
+                        <button type="submit" className="create-btn">
+                            Create Plan
+                        </button>
                     </form>
                 </div>
             </div>
         );
-    }
+
 }
 
 export default PlanATrip;

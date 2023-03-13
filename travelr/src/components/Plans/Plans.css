@@ -19,7 +19,7 @@
   .Plan .image-container {
     height: 16.66rem;
     margin-bottom: 1rem;
-    background-image: url(../../images/rome.jpg);
+    /* background-image: url(../../images/rome.jpg); */
     background-size: 100% 100%;
 
   }
@@ -41,3 +41,12 @@
     line-height: 1rem;
   }
   
+  .delete-btn {
+    color: #D3D3D3;
+    font-size: 20px;
+    /* background-color: red; */
+  }
+
+  .delete-btn:hover{
+    color: black;
+  }
